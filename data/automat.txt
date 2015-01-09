@@ -1,0 +1,11 @@
+NKAR
+6
+7
+ABC CA A A B C F
+A C D A A B E
+A A B C D A E
+A C D A A B D
+C D A A B B D
+A D A BCD E F EF
+2 D A v
+3 A C E

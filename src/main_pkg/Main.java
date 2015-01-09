@@ -1,10 +1,26 @@
 package main_pkg;
 
+import java.io.IOException;
+
 public class Main {
+	
+	public static final String FILE_PATH = "data\\automat.txt";
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		
+		try {
+			Automaton a = Input_Output.createAutomatonFromFile(FILE_PATH);
+			
+			System.out.println(a.getAutomatonType());
+		}
+		catch(IOException e) {
+			System.err.println("Chyba pri cteni souboru: "+e.getMessage());
+		}
+		catch(NumberFormatException f) {
+			System.err.println("Chyba pri prevadeni cisel ze Stringu na Integer: "+f.getMessage());
+		}
+		
+		
 	}
 
 }
