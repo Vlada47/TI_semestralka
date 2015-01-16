@@ -48,7 +48,7 @@ public class Input_Output {
 		for(int i = 0; i < outputStatusArray.length; i++) {
 			outputStatusArray[i] = lineArray[i+1];
 		}
-		a.setInputStatus(outputStatusCnt, outputStatusArray);
+		a.setOutputStatus(outputStatusCnt, outputStatusArray);
 		
 		br.close();
 		
