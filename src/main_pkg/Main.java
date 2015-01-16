@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class Main {
 	
-	public static final String FILE_PATH = "data/automat.txt";
+	public static final String FILE_PATH = "data\\automat.txt";
 
 	public static void main(String[] args) {
 		
