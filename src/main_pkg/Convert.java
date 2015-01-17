@@ -50,7 +50,7 @@ public class Convert {
 
 		eTable = new String[nkaTable.length];
 		for (int i = 0; i < eTable.length; i++) {
-			eTable[i] = ('A' + i) + "";
+			eTable[i] = (char) ('A' + i) + "";
 		}
 		createETable(nkaTable, nka.getInputCnt(), eTable);
 
@@ -67,6 +67,15 @@ public class Convert {
 		for (int i = 0; i < nka.getInputStatusArray().size(); i++) {
 			s += nka.getInputStatusArray().get(i);
 		}
+		s = sortString(s);
+		// Pridam prvnimu stavu e-nasledniky
+		for (int i = 0; i < s.length(); i++) {
+			for (int j = 0; j < eTable[s.charAt(i) - 'A'].length(); j++) {
+				if (notUsed(s, eTable[s.charAt(i) - 'A'].charAt(j))) {
+					s += eTable[s.charAt(i) - 'A'].charAt(j);
+				}
+			}
+		}
 		statuses.add(sortString(s));
 
 		// Pro kazdou radku se pro kazdy sloupec zjisti novy stav a pripadne
@@ -81,6 +90,9 @@ public class Convert {
 				for (int j = 0; j < s.length(); j++) {
 					String status = nkaTable[s.charAt(j) - 'A'][i];
 					// Kontroluji, jestli jiz stav neni v tomto sloupci
+					if (status.charAt(0) == '-') {
+						continue;
+					}
 					for (int k = 0; k < status.length(); k++) {
 						if (notUsed(dkaTable[count][i], status.charAt(k))) {
 							dkaTable[count][i] += status.charAt(k);
@@ -88,9 +100,15 @@ public class Convert {
 					}
 				}
 				// Pridam do sloupce e-nasledniky
-				for (int j = 0; j < eTable[i].length(); j++) {
-					if (notUsed(dkaTable[count][i], eTable[i].charAt(j))) {
-						dkaTable[count][i] += eTable[i].charAt(j);
+				for (int j = 0; j < dkaTable[count][i].length(); j++) {
+					for (int k = 0; k < eTable[dkaTable[count][i].charAt(j) - 'A']
+							.length(); k++) {
+						if (notUsed(dkaTable[count][i],
+								eTable[dkaTable[count][i].charAt(j) - 'A']
+										.charAt(k))) {
+							dkaTable[count][i] += eTable[dkaTable[count][i]
+									.charAt(j) - 'A'].charAt(k);
+						}
 					}
 				}
 				// Nove vyplneny sloupec seradim podle abecedy
@@ -110,9 +128,9 @@ public class Convert {
 			return null;
 		}
 		dka = new Automaton("DKAR", statuses.size(), nka.getInputCnt());
+		setOuputStatusesToDka(nka, dka, statuses);
 		renameStatuses(dkaTable, statuses);
 		dka.setAutomatonTable(dkaTable);
-		setOuputStatusesToDka(nka, dka, statuses);
 		ArrayList<String> inputStatus = new ArrayList<String>();
 		inputStatus.add("A");
 		dka.setInputStatuses(inputStatus);
@@ -247,7 +265,6 @@ public class Convert {
 				for (int l = 0; l < s.length(); l++) {
 					if (notUsed(e, s.charAt(l))) {
 						e += s.charAt(l);
-						e = sortString(e);
 					}
 				}
 				if (k < e.length()) {
@@ -256,7 +273,7 @@ public class Convert {
 				} else
 					break;
 			}
-			eTable[i] += e;
+			eTable[i] += sortString(e);
 		}
 	}
 }
