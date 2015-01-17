@@ -1,5 +1,7 @@
 package main_pkg;
 
+import java.util.ArrayList;
+
 /**
  * Trida s konstruktorem a metodami pro ulozeni parametru konecneho automatu.
  * @author Vlada47
@@ -33,24 +35,14 @@ public class Automaton {
 	private String[][] automatonTable;
 	
 	/**
-	 * Pocet vstupnich stavu automatu.
-	 */
-	private int inputStatusCnt;
-	
-	/**
-	 * Pocet vystupnich stavu automatu.
-	 */
-	private int outputStatusCnt;
-	
-	/**
 	 * Pole se vstupnimi stavy.
 	 */
-	private String[] inputStatusArray;
+	private ArrayList<String> inputStatuses;
 	
 	/**
 	 * Pole s vystupnimi stavy.
 	 */
-	private String[] outputStatusArray;
+	private ArrayList<String> outputStatuses;
 	
 	/**
 	 * Konstruktor objektu automatu.
@@ -68,14 +60,12 @@ public class Automaton {
 		this.automatonTable = table;
 	}
 	
-	public void setInputStatus(int cnt, String[] statusArray) {
-		this.inputStatusCnt = cnt;
-		this.inputStatusArray = statusArray;
+	public void setInputStatuses(ArrayList<String> statusArray) {
+		this.inputStatuses = statusArray;
 	}
 	
-	public void setOutputStatus(int cnt, String[] statusArray) {
-		this.outputStatusCnt = cnt;
-		this.outputStatusArray = statusArray;
+	public void setOutputStatuses(ArrayList<String> statusArray) {
+		this.outputStatuses = statusArray;
 	}
 
 	/**
@@ -107,30 +97,16 @@ public class Automaton {
 	}
 
 	/**
-	 * @return the inputStatusCnt
-	 */
-	public int getInputStatusCnt() {
-		return inputStatusCnt;
-	}
-
-	/**
-	 * @return the outputStatusCnt
-	 */
-	public int getOutputStatusCnt() {
-		return outputStatusCnt;
-	}
-
-	/**
 	 * @return the inputStatusArray
 	 */
-	public String[] getInputStatusArray() {
-		return inputStatusArray;
+	public ArrayList<String> getInputStatusArray() {
+		return inputStatuses;
 	}
 
 	/**
 	 * @return the outputStatusArray
 	 */
-	public String[] getOutputStatusArray() {
-		return outputStatusArray;
+	public ArrayList<String> getOutputStatusArray() {
+		return outputStatuses;
 	}
 }

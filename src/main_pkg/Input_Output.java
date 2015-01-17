@@ -5,7 +5,13 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
+/**
+ * Trida obsahujici metody pro nacteni NKA ze souboru a pro ulozeni parametru DKA do souboru ve specifickem formatu.
+ * @author Vlada47
+ *
+ */
 public class Input_Output {
 	
 	private static final String WHITE_SPACE = " ";
@@ -45,20 +51,20 @@ public class Input_Output {
 		fileLine = br.readLine();
 		lineArray = fileLine.split(WHITE_SPACE);
 		int inputStatusCnt = Integer.parseInt(lineArray[0]);
-		String[] inputStatusArray = new String[inputStatusCnt];
-		for(int i = 0; i < inputStatusArray.length; i++) {
-			inputStatusArray[i] = lineArray[i+1];
+		ArrayList<String> inputStatusArray = new ArrayList<String>();
+		for(int i = 0; i < inputStatusCnt; i++) {
+			inputStatusArray.add(lineArray[i+1]);
 		}
-		a.setInputStatus(inputStatusCnt, inputStatusArray);
+		a.setInputStatuses(inputStatusArray);
 		
 		fileLine = br.readLine();
 		lineArray = fileLine.split(WHITE_SPACE);
 		int outputStatusCnt = Integer.parseInt(lineArray[0]);
-		String[] outputStatusArray = new String[outputStatusCnt];
-		for(int i = 0; i < outputStatusArray.length; i++) {
-			outputStatusArray[i] = lineArray[i+1];
+		ArrayList<String> outputStatusArray = new ArrayList<String>();
+		for(int i = 0; i < outputStatusCnt; i++) {
+			outputStatusArray.add(lineArray[i+1]);
 		}
-		a.setOutputStatus(outputStatusCnt, outputStatusArray);
+		a.setOutputStatuses(outputStatusArray);
 		
 		br.close();
 		
@@ -90,16 +96,17 @@ public class Input_Output {
 		}
 		
 		line = "";
-		String[] inputStatus = a.getInputStatusArray();
-		for(int i = 0; i < a.getInputStatusCnt(); i++) {
-			line += inputStatus[i]+" ";
+		ArrayList<String> inputStatus = a.getInputStatusArray();
+		for(int i = 0; i < inputStatus.size(); i++) {
+			line += inputStatus.get(i)+" ";
 		}
 		bw.write(line); bw.newLine();
 		
-		line = a.getOutputStatusCnt()+" ";
-		String[] outputStatus = a.getOutputStatusArray();
-		for(int i = 0; i < a.getOutputStatusCnt(); i++) {
-			line += outputStatus[i]+" ";
+		
+		ArrayList<String> outputStatus = a.getOutputStatusArray();
+		line = outputStatus.size()+" ";
+		for(int i = 0; i < outputStatus.size(); i++) {
+			line += outputStatus.get(i)+" ";
 		}
 		bw.write(line);
 		

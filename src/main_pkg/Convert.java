@@ -1,5 +1,6 @@
 package main_pkg;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 
@@ -51,8 +52,8 @@ public class Convert {
 
 		// Prvni stav bude sjednoceni vstupnich stavu
 		String s = "";
-		for(int i = 0; i < nka.getInputStatusArray().length; i++) {
-			s += nka.getInputStatusArray()[i];
+		for(int i = 0; i < nka.getInputStatusArray().size(); i++) {
+			s += nka.getInputStatusArray().get(i);
 		}
 		statuses.add(sortString(s));
 
@@ -97,8 +98,9 @@ public class Convert {
 		renameStatuses(dkaTable, statuses);
 		dka.setAutomatonTable(dkaTable);
 		setOuputStatusesToDka(nka, dka, statuses);
-		String[] inputStatus = {"A"};
-		dka.setInputStatus(1, inputStatus);
+		ArrayList<String> inputStatus = new ArrayList<String>();
+		inputStatus.add("A");
+		dka.setInputStatuses(inputStatus);
 
 		return dka;
 	}
@@ -111,13 +113,13 @@ public class Convert {
 	 * @param statuses - stavy deterministickeho automatu
 	 */
 	private static void setOuputStatusesToDka(Automaton nka, Automaton dka, LinkedList<String> statuses) {
-		String[] outputStatusArrayNKA = nka.getOutputStatusArray();
-		LinkedList<String> outputStatusesDKA = new LinkedList<String>();
+		ArrayList<String> outputStatusArrayNKA = nka.getOutputStatusArray();
+		ArrayList<String> outputStatusesDKA = new ArrayList<String>();
 		
 		for(int i = 0; i < statuses.size(); i++) {
 			String status = statuses.get(i);
-			for(int j = 0; j < outputStatusArrayNKA.length; j++) {
-				if(status.contains(outputStatusArrayNKA[j])) {
+			for(int j = 0; j < outputStatusArrayNKA.size(); j++) {
+				if(status.contains(outputStatusArrayNKA.get(j))) {
 					char s = (char)('A'+i);
 					outputStatusesDKA.add(s+"");
 					break;
@@ -125,15 +127,7 @@ public class Convert {
 			}
 		}
 		
-		int outputStatusesCnt = outputStatusesDKA.size();
-		
-		String[] outputStatusArrayDKA = new String[outputStatusesCnt];
-		
-		for(int i = 0; i < outputStatusesCnt; i++) {
-			outputStatusArrayDKA[i] = outputStatusesDKA.get(i);
-		}
-		
-		dka.setOutputStatus(outputStatusesCnt, outputStatusArrayDKA);
+		dka.setOutputStatuses(outputStatusesDKA);
 	}
 	
 	/**

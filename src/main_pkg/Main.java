@@ -2,6 +2,11 @@ package main_pkg;
 
 import java.io.IOException;
 
+/**
+ * Hlavni trida programu. Resi spravny pocet vstupu a vyjimky vracene metodami pro praci se soubory.
+ * @author Vlada47
+ *
+ */
 public class Main {
 	
 	//public static final String INPUT_FILE_PATH = "data\\automat.txt";
