@@ -11,9 +11,9 @@ import java.util.LinkedList;
  */
 public class Convert {
 	/**
-	 * NKA a DKA automaty
+	 * DKA automat
 	 */
-	private static Automaton nka, dka;
+	private static Automaton dka;
 
 	/**
 	 * Prechodova tabulka NKA
@@ -85,65 +85,54 @@ public class Convert {
 			count++;
 		}
 		
-		for(int i = 0; i < dkaTable.length; i++) {
+		/*for(int i = 0; i < statuses.size(); i++) {
 			for(int j = 0; j < dkaTable[i].length; j++) {
-				System.out.println(dkaTable[i][j]);
+				System.out.print(dkaTable[i][j]+", ");
 			}
 			System.out.println();
-		}
+		}*/
 		
 		
 		dka = new Automaton("DKAR", statuses.size(), nka.getInputCnt());
 		renameStatuses(dkaTable, statuses);
 		dka.setAutomatonTable(dkaTable);
-		setInputOutputStatusesToDka(nka, dka, statuses);
+		setOuputStatusesToDka(nka, dka, statuses);
+		String[] inputStatus = {"A"};
+		dka.setInputStatus(1, inputStatus);
 
 		return dka;
 	}
 	
 	/**
-	 * Prohleda stavy deterministickeho automatu a urci na zaklade informaci z nedeterministickeho, kter budou vstupni a vystupni.
+	 * Prohleda stavy deterministickeho automatu a urci na zaklade informaci z nedeterministickeho, ktere budou vystupni.
 	 * Zaroven je pred ulozenim do automatu prepise podle pozadavku na vystup (A...Z).
 	 * @param nka - nedeterministicky automat
 	 * @param dka - deterministicky automat
 	 * @param statuses - stavy deterministickeho automatu
 	 */
-	private static void setInputOutputStatusesToDka(Automaton nka, Automaton dka, LinkedList<String> statuses) {
-		String[] inputStatusArrayNKA = nka.getInputStatusArray();
+	private static void setOuputStatusesToDka(Automaton nka, Automaton dka, LinkedList<String> statuses) {
 		String[] outputStatusArrayNKA = nka.getOutputStatusArray();
-		LinkedList<String> inputStatusesDKA = new LinkedList<String>();
 		LinkedList<String> outputStatusesDKA = new LinkedList<String>();
 		
 		for(int i = 0; i < statuses.size(); i++) {
 			String status = statuses.get(i);
-			for(int j = 0; j < inputStatusArrayNKA.length; j++) {
-				if(status.contains(inputStatusArrayNKA[j])) {
-					char s = (char)('A'+i);
-					inputStatusesDKA.add(s+"");
-				}
-			}
 			for(int j = 0; j < outputStatusArrayNKA.length; j++) {
 				if(status.contains(outputStatusArrayNKA[j])) {
 					char s = (char)('A'+i);
 					outputStatusesDKA.add(s+"");
+					break;
 				}
 			}
 		}
 		
-		int inputStatusesCnt = inputStatusesDKA.size();
 		int outputStatusesCnt = outputStatusesDKA.size();
 		
-		String[] inputStatusArrayDKA = new String[inputStatusesCnt];
 		String[] outputStatusArrayDKA = new String[outputStatusesCnt];
 		
-		for(int i = 0; i < inputStatusesCnt; i++) {
-			inputStatusArrayDKA[i] = inputStatusesDKA.get(i);
-		}
 		for(int i = 0; i < outputStatusesCnt; i++) {
 			outputStatusArrayDKA[i] = outputStatusesDKA.get(i);
 		}
 		
-		dka.setInputStatus(inputStatusesCnt, inputStatusArrayDKA);
 		dka.setOutputStatus(outputStatusesCnt, outputStatusArrayDKA);
 	}
 	
@@ -154,13 +143,15 @@ public class Convert {
 	 */
 	private static void renameStatuses(String[][] dkaTable, LinkedList<String> statuses) {
 		for(int i = 0; i < statuses.size(); i++) {
-			String status = statuses.get(i);
-			
-			for(int j = 0; j < statuses.size(); j++) {
-				for(int k = 0; k < dkaTable[j].length; k++) {
-					if(dkaTable[j][k].equals(status)) {
-						char s = (char)('A'+i);
-						dkaTable[j][k] = s+"";
+			for(int j = 0; j < dkaTable[i].length; j++) {
+				String tableStatus = dkaTable[i][j];
+				
+				for(int k = 0; k < statuses.size(); k++) {
+					String listStatus = statuses.get(k);
+					
+					if(tableStatus.equals(listStatus)) {
+						char s = (char)('A'+k);
+						dkaTable[i][j] = s+"";
 					}
 				}
 			}
