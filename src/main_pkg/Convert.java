@@ -22,6 +22,11 @@ public class Convert {
 	private static String[][] nkaTable;
 
 	/**
+	 * Tabulka e-nasledniku
+	 */
+	private static String[] eTable;
+
+	/**
 	 * Prechodova tabulka DKA. Ma nejvice 2^N stavu, kde N je pocet stavu NKA
 	 */
 	private static String[][] dkaTable;
@@ -42,6 +47,13 @@ public class Convert {
 	 */
 	public static Automaton nkaToDka(Automaton nka) {
 		nkaTable = nka.getAutomatonTable();
+
+		eTable = new String[nkaTable.length];
+		for (int i = 0; i < eTable.length; i++) {
+			eTable[i] = ('A' + i) + "";
+		}
+		createETable(nkaTable, nka.getInputCnt(), eTable);
+
 		dkaTable = new String[(int) Math.pow(2, nkaTable.length)][nka
 				.getInputCnt()];
 		for (int i = 0; i < dkaTable.length; i++) {
@@ -52,7 +64,7 @@ public class Convert {
 
 		// Prvni stav bude sjednoceni vstupnich stavu
 		String s = "";
-		for(int i = 0; i < nka.getInputStatusArray().size(); i++) {
+		for (int i = 0; i < nka.getInputStatusArray().size(); i++) {
 			s += nka.getInputStatusArray().get(i);
 		}
 		statuses.add(sortString(s));
@@ -61,7 +73,7 @@ public class Convert {
 		// prida do seznamu
 		int count = 0;
 		// Dokud nejsem na konci seznamu, tzn. uz nemam nove stavy
-		while (count < statuses.size()) {
+		while (count < statuses.size() && statuses.size() <= 26) {
 			s = statuses.get(count);
 			// Pro kazdy sloupec v radku
 			for (int i = 0; i < dkaTable[count].length; i++) {
@@ -75,6 +87,12 @@ public class Convert {
 						}
 					}
 				}
+				// Pridam do sloupce e-nasledniky
+				for (int j = 0; j < eTable[i].length(); j++) {
+					if (notUsed(dkaTable[count][i], eTable[i].charAt(j))) {
+						dkaTable[count][i] += eTable[i].charAt(j);
+					}
+				}
 				// Nove vyplneny sloupec seradim podle abecedy
 				dkaTable[count][i] = sortString(dkaTable[count][i]);
 				// Pokud stav ze sloupce jeste neni v seznamu, pridam ho
@@ -85,15 +103,12 @@ public class Convert {
 			}
 			count++;
 		}
-		
-		/*for(int i = 0; i < statuses.size(); i++) {
-			for(int j = 0; j < dkaTable[i].length; j++) {
-				System.out.print(dkaTable[i][j]+", ");
-			}
-			System.out.println();
-		}*/
-		
-		
+
+		if (statuses.size() > 26) {
+			System.out
+					.println("Takto velky vstupni NKA neni podporovany. Vznikly DKA ma vice nez 26 (A-Z) stavu");
+			return null;
+		}
 		dka = new Automaton("DKAR", statuses.size(), nka.getInputCnt());
 		renameStatuses(dkaTable, statuses);
 		dka.setAutomatonTable(dkaTable);
@@ -104,48 +119,59 @@ public class Convert {
 
 		return dka;
 	}
-	
+
 	/**
-	 * Prohleda stavy deterministickeho automatu a urci na zaklade informaci z nedeterministickeho, ktere budou vystupni.
-	 * Zaroven je pred ulozenim do automatu prepise podle pozadavku na vystup (A...Z).
-	 * @param nka - nedeterministicky automat
-	 * @param dka - deterministicky automat
-	 * @param statuses - stavy deterministickeho automatu
+	 * Prohleda stavy deterministickeho automatu a urci na zaklade informaci z
+	 * nedeterministickeho, ktere budou vystupni. Zaroven je pred ulozenim do
+	 * automatu prepise podle pozadavku na vystup (A...Z).
+	 * 
+	 * @param nka
+	 *            - nedeterministicky automat
+	 * @param dka
+	 *            - deterministicky automat
+	 * @param statuses
+	 *            - stavy deterministickeho automatu
 	 */
-	private static void setOuputStatusesToDka(Automaton nka, Automaton dka, LinkedList<String> statuses) {
+	private static void setOuputStatusesToDka(Automaton nka, Automaton dka,
+			LinkedList<String> statuses) {
 		ArrayList<String> outputStatusArrayNKA = nka.getOutputStatusArray();
 		ArrayList<String> outputStatusesDKA = new ArrayList<String>();
-		
-		for(int i = 0; i < statuses.size(); i++) {
+
+		for (int i = 0; i < statuses.size(); i++) {
 			String status = statuses.get(i);
-			for(int j = 0; j < outputStatusArrayNKA.size(); j++) {
-				if(status.contains(outputStatusArrayNKA.get(j))) {
-					char s = (char)('A'+i);
-					outputStatusesDKA.add(s+"");
+			for (int j = 0; j < outputStatusArrayNKA.size(); j++) {
+				if (status.contains(outputStatusArrayNKA.get(j))) {
+					char s = (char) ('A' + i);
+					outputStatusesDKA.add(s + "");
 					break;
 				}
 			}
 		}
-		
+
 		dka.setOutputStatuses(outputStatusesDKA);
 	}
-	
+
 	/**
-	 * Prepise nazvy (Stringy) stavu v prechodove tabulce deterministickeho automatu podle oznaceni vyzadovaneho vystupem (A...Z).
-	 * @param dkaTable - prechodova tabulka deterministickeho automatu
-	 * @param statuses - stavy deterministickeho automatu
+	 * Prepise nazvy (Stringy) stavu v prechodove tabulce deterministickeho
+	 * automatu podle oznaceni vyzadovaneho vystupem (A...Z).
+	 * 
+	 * @param dkaTable
+	 *            - prechodova tabulka deterministickeho automatu
+	 * @param statuses
+	 *            - stavy deterministickeho automatu
 	 */
-	private static void renameStatuses(String[][] dkaTable, LinkedList<String> statuses) {
-		for(int i = 0; i < statuses.size(); i++) {
-			for(int j = 0; j < dkaTable[i].length; j++) {
+	private static void renameStatuses(String[][] dkaTable,
+			LinkedList<String> statuses) {
+		for (int i = 0; i < statuses.size(); i++) {
+			for (int j = 0; j < dkaTable[i].length; j++) {
 				String tableStatus = dkaTable[i][j];
-				
-				for(int k = 0; k < statuses.size(); k++) {
+
+				for (int k = 0; k < statuses.size(); k++) {
 					String listStatus = statuses.get(k);
-					
-					if(tableStatus.equals(listStatus)) {
-						char s = (char)('A'+k);
-						dkaTable[i][j] = s+"";
+
+					if (tableStatus.equals(listStatus)) {
+						char s = (char) ('A' + k);
+						dkaTable[i][j] = s + "";
 					}
 				}
 			}
@@ -198,5 +224,39 @@ public class Convert {
 		Arrays.sort(array);
 		s = new String(array);
 		return s;
+	}
+
+	/**
+	 * Vytvori tabulku e-nasledniku
+	 * 
+	 * @param nkaTable
+	 *            Prechodova tabulka NKA
+	 * @param inputCount
+	 *            Pocet prvku mnoziny vstupu
+	 * @param eTable
+	 *            Tabulka e-nasledniku
+	 */
+	private static void createETable(String[][] nkaTable, int inputCount,
+			String[] eTable) {
+		for (int i = 0; i < nkaTable.length; i++) {
+			String e = "";
+			int j = i;
+			int k = 0;
+			while (nkaTable[j].length > inputCount) {
+				String s = nkaTable[j][inputCount];
+				for (int l = 0; l < s.length(); l++) {
+					if (notUsed(e, s.charAt(l))) {
+						e += s.charAt(l);
+						e = sortString(e);
+					}
+				}
+				if (k < e.length()) {
+					j = e.charAt(k) - 'A';
+					k++;
+				} else
+					break;
+			}
+			eTable[i] += e;
+		}
 	}
 }
