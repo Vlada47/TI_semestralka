@@ -192,6 +192,10 @@ public class Convert {
 						dkaTable[i][j] = s + "";
 					}
 				}
+				
+				if(tableStatus.equals(" ") || tableStatus.equals("") || tableStatus.equals(null)) {
+					dkaTable[i][j] = "-";
+				}
 			}
 		}
 	}
