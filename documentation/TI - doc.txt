@@ -1,0 +1,17 @@
+Převod nedeterminstického automatu na deterministický
+
+Zadání
+
+Implementujte algoritmus pro převod nedeterministického koneèného rozpoznávacího automatu (umožnìte i existenci e-hran) na ekvivalentní deterministický automat. Navrhněte vhodný formát vstupních a výstupních dat.
+Program odlaďte alespoň na 6 příkladech včetně příkladů prezentovaných na přednáškách a cvičeních.
+Všechny testovací příklady uveïte v dokumentaci včetně ručního řešení.
+
+Formát vstupních a výstupních dat
+Jako formát vstupních a výstupních dat budeme volit textové soubory *.TI odpovídající definici nedeterministického konečného rozpoznávacího automatu (vstup) a deterministického konečného rozpoznávacího automatu (výstup) na stránce http://home.zcu.cz/~vais/formaty.htm. Cílem výstupu je pak možnost jej využít pro další zpracování (např. minimalizace) daného automatu dalším programem.
+
+Analýza úlohy
+
+Převod obecně nedeterministického automatu na deterministický spočívá v postupném odstranění jednotlivých nedeterminismů - více vstupních stavů, výskyt e-hran a nejednoznačné přechody, podle toho bude také postupováno při vývoji programu. Před samotným algoritmem převodu bude samozřejmì zapotřebí načíst vstupní data a uložit je do vhodné datové struktury a s tou následně pracovat. Výsledek převodu pak bude vypsán prostřednictvím další takové struktury do souboru, který bude představovat výsledek práce programu.
+
+Řešení vstupu
+Informace ze vstupních souborů budou zpracovány pomocí 
