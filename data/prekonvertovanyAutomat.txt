@@ -1,9 +1,11 @@
 DKAR
-4
-3
-B - C 
-- D - 
-- - C 
-- - - 
+6
+2
+B A 
+C D 
+- - 
+E F 
+B A 
+- D 
 A 
-3 A C D 
+2 C E 

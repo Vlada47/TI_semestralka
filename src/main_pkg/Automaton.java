@@ -68,44 +68,26 @@ public class Automaton {
 		this.outputStatuses = statusArray;
 	}
 
-	/**
-	 * @return the automatonType
-	 */
 	public String getAutomatonType() {
 		return automatonType;
 	}
 
-	/**
-	 * @return the statusCnt
-	 */
 	public int getStatusCnt() {
 		return statusCnt;
 	}
 
-	/**
-	 * @return the inputCnt
-	 */
 	public int getInputCnt() {
 		return inputCnt;
 	}
 
-	/**
-	 * @return the automatonTable
-	 */
 	public String[][] getAutomatonTable() {
 		return automatonTable;
 	}
 
-	/**
-	 * @return the inputStatusArray
-	 */
 	public ArrayList<String> getInputStatusArray() {
 		return inputStatuses;
 	}
-
-	/**
-	 * @return the outputStatusArray
-	 */
+	
 	public ArrayList<String> getOutputStatusArray() {
 		return outputStatuses;
 	}

@@ -19,8 +19,8 @@ public class Input_Output {
 	/**
 	 * Metoda pro nacteni informaci o automatu ze souboru ve specifickem formatu.
 	 * Tyto informace jsou pak ulozeny do prislusneho objektu typu Automaton.
-	 * @param filePath
-	 * @return
+	 * @param filePath - cesta k souboru, odkud se maji informace ziskat
+	 * @return vraci instanci tridy Automat predstavujici vytvoreny nedeterministicky automat
 	 * @throws IOException
 	 * @throws NumberFormatException
 	 */
@@ -73,8 +73,8 @@ public class Input_Output {
 	
 	/**
 	 * Metoda pro zapsani parametru automatu ve specifickem formatu do souboru.
-	 * @param a
-	 * @param filepath
+	 * @param a - instance tridy Automat predstavujici deterministicky automat, co se ma zapsat do souboru
+	 * @param filepath - cesta k souboru, do ktereho se automat zapise 
 	 * @throws IOException
 	 */
 	public static void writeAutomatonToFile(Automaton a, String filepath) throws IOException {

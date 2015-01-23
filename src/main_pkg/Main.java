@@ -10,11 +10,12 @@ import java.io.IOException;
  *
  */
 public class Main {
-
-	// public static final String INPUT_FILE_PATH = "data\\automat.txt";
-	// public static final String OUTPUT_FILE_PATH =
-	// "data\\prekonvertovanyAutomat.txt";
-
+	
+	/**
+	 * Hlavni metoda programu, ktera postupne spusti metody pro vytvoreni nedeterministickeho automatu,
+	 * jeho prevod na deterministicky a nasledny zapis vysledku do souboru.
+	 * @param args - vstupni argumenty programu, zde jsou pouzity jako cesty k souborum pro nacteni a vypis automatu
+	 */
 	public static void main(String[] args) {
 
 		if (args.length < 2) {
