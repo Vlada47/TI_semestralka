@@ -10,17 +10,5 @@
 \BOOKMARK [2][-]{subsection.3.3}{Algoritmus prevodu}{section.3}% 10
 \BOOKMARK [2][-]{subsection.3.4}{Ulo\236en\355 v\375sledn\351ho automatu a v\375pis na v\375stup}{section.3}% 11
 \BOOKMARK [1][-]{section.4}{U\236ivatelsk\341 dokumentace}{}% 12
-\BOOKMARK [1][-]{section.5}{Porovn\341n\355 s rucn\355m re\235en\355m prevodu a overen\355 spr\341vnosti}{}% 13
+\BOOKMARK [1][-]{section.5}{Overen\355 spr\341vnosti prevodu}{}% 13
 \BOOKMARK [1][-]{section.6}{Z\341ver}{}% 14
-\BOOKMARK [2][-]{subsection.6.1}{Reprezentace s\355te v programu}{section.6}% 15
-\BOOKMARK [2][-]{subsection.6.2}{Parametry pripravovan\351 s\355te}{section.6}% 16
-\BOOKMARK [2][-]{subsection.6.3}{Sestaven\355 neuronov\351 s\355te}{section.6}% 17
-\BOOKMARK [2][-]{subsection.6.4}{V\375pocet aktivacn\355ch hodnot}{section.6}% 18
-\BOOKMARK [1][-]{section.7}{Implementace programu}{}% 19
-\BOOKMARK [2][-]{subsection.7.1}{Struktura pro vrstvy s\355te}{section.7}% 20
-\BOOKMARK [2][-]{subsection.7.2}{Struktura pro neurony ve vrstv\341ch}{section.7}% 21
-\BOOKMARK [2][-]{subsection.7.3}{Struktura pro hrany mezi neurony jednotliv\375ch vrstev}{section.7}% 22
-\BOOKMARK [2][-]{subsection.7.4}{Postup cinnosti programu}{section.7}% 23
-\BOOKMARK [2][-]{subsection.7.5}{Vyu\236it\355 knihovn\355ch funkc\355 jazyka C}{section.7}% 24
-\BOOKMARK [1][-]{section.8}{U\236ivatelsk\341 dokumentace}{}% 25
-\BOOKMARK [1][-]{section.9}{Z\341ver a zhodnocen\355 pr\341ce}{}% 26
