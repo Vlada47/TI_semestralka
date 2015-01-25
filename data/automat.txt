@@ -1,13 +1,9 @@
 NKAR
-8
-2
-BC A
-- E
-D -  
-- -
-AD FH
-- E
-AD H
-- E
+4
+3
+D - - B
+- - B C
+- - -
+- C -
 1 A
-1 D
+1 C

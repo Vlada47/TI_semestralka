@@ -98,7 +98,6 @@ Samotný převod je implementován ve třídě \texttt{Convert} a v její hlavn�
 Výsledný deterministický automat je vytvořen na konci metody pro převod. Nejprve se vytvoří objekt tohoto automatu, přičemž jako parametry jsou použity řetězec "DKAR" (deterministický konečný automat rozpoznávací - dle požadovaného formátu souboru), velikost seznamu s vytvořenými stavy a počet vstupních znaků z původního automatu (ten se převodem nijak nemění). Poté se uloží pomocí metody \texttt{static void setOuputStatusesToDka(Automaton nka, Automaton dka, LinkedList<String> statuses)} seznam výstupních stavů automatu postupem víceméně popsaným v analýze. V metodě také dojde k přejmenování stavů tak, aby vyhovovaly formátu souboru, který bude výstupem. Přejmenování probíhá procházením vytvořených výstupních stavů, které mohou být v tu chvíli označené jako složení původních stavů, přičemž se tyto stavy porovnávají se seznamem všech nově vytvořených stavů a jakmile dojde ke shodě, složený stav se přejmenuje podle formule \texttt{'A'+ index stavu v seznamu vytvořených stavů}. K podobnému přejmenování dojde i ve vytvořené přechodové tabulce v metodě \texttt{static void renameStatuses(String[][] dkaTable, LinkedList<String> statuses)}. Nakonec se tabulka předá objektu automatu a tytvoří se list s jednim stavem \texttt{"A"}, který je uložen jako vstupní (prezentuje množinu původní vstupních stavů).
 
 Objekt se pak použije k výpisu informací do výstupního souboru pomocí metody \texttt{static void writeAutomatonToFile(Automaton a, String filepath)} ze třídy \texttt{Input\_Output}. V zásadě funguje opačně než metoda pro získání dat ze souboru. Postupně skládá informace získané z objektu automatu do řetězců, představující jednotlivé řádky (podle požadovaného formátu) a ty pomocí metody \texttt{write(<retezec>)} z knihovní třídy \texttt{BufferedWriter} zapisuje do zadaného souboru. 
--doplnit-
 
 \newpage
 
@@ -132,7 +131,148 @@ Pokud nedodržíme uvedené podmínky, program skončí chybovým hlášením. S
 
 \section{Ověření správnosti převodu}
 
--doplnit-
+Zde se pokusíme ověřit, zda vytvořený program splňuje korektně svůj účel, totiž zda ze zadaného nedeterministického automatu dokáže vytvořit \textbf{ekvivalentní} deterministický automat. Správnost budeme testovat na celkem šesti různých nedeterministických automatech, které se vyskytli na přednáškách či cvičeních předmětu Teoretická informatika. Testování bude prováděno nějakým řetězcem složeným ze znaků vstupní abecedy, kterou dokáže daný automat zpracovat, pro přechodovou tabulku nedeterministického automatu a ten samý test se pak provede pro tabulku deterministického automatu. Vstupní a výstupní stavy jsou pak vypsány mimo tabulku, přičemž u deterministického automatu je vstupním vždy pouze stav \texttt{A}.
+
+\subsection{Automat 1}
+Následující automat přijímá řetězce složené z písmen \texttt{a}, \texttt{b}, přičemž mezi jeho nedeterminismy patří  \textbf{více vstupních stavů} a  \textbf{nejednoznačné přechody}.
+
+\bigskip
+
+Vstupní stavy: \texttt{A, B}
+
+Výstupní stavy: \texttt{A, D}
+
+\bigskip
+
+Přechodová tabulka nedeterministického automatu:
+
+\bigskip
+
+\begin{tabular}{| l | l | l |}
+\hline
+  & a & b \\ \hline
+A & A,B & C \\ \hline
+B & C & D \\ \hline
+C & A,C & B \\ \hline
+D & A & C \\
+\hline
+\end{tabular}
+
+\bigskip
+
+Konfigurace nedeterministického automatu pro řetězec \texttt{aaabba}:
+
+(A, aaabba) | (B, aabba) | (C, abba) | (C, bba) | (B, ba) | (D, a) | (A, - )
+
+- řetězec \textbf{je akceptovaný} automatem
+
+\bigskip
+
+Přechodová tabulka deterministického automatu:
+
+\bigskip
+
+\begin{tabular}{| l | l | l |}
+\hline
+  & a & b \\ \hline
+A & B & C \\ \hline
+B & B & D \\ \hline
+C & E & F \\ \hline
+D & E & D \\ \hline
+E & B & F \\ \hline
+F & E & G \\ \hline
+G & E & C \\
+\hline
+\end{tabular}
+
+\bigskip
+
+Výstupní stavy: \texttt{A, B, C, D, E, G}
+
+\bigskip
+
+Konfigurace deterministického automatu pro řetězec \texttt{aaabba}:
+
+(A, aaabba) | (B, aabba) | (B, abba) | (B, bba) | (D, ba) | (D, a) | (E, - )
+
+- řetězec  \textbf{je akceptovaný} automatem
+
+\subsection{Automat 2}
+Následující automat přijímá řetězce složené z písmen \texttt{a}, \texttt{b}, \texttt{c}, přičemž mezi jeho nedeterminismy patří pouze \textbf{výskyt e-hran}. Automat vychází z regulárního výrazu \texttt{ab + c*} . 
+
+\bigskip
+
+Vstupní stavy: \texttt{A}
+
+Výstupní stavy: \texttt{C}
+
+\bigskip
+
+Přechodová tabulka nedeterministického automatu:
+
+\bigskip
+
+\begin{tabular}{| l | l | l | l || l |}
+\hline
+  & a & b & c & e \\ \hline
+A & D & - & - & B \\ \hline
+B & - & - & B & C \\ \hline
+C & - & - & - &  \\ \hline
+D & - & C & - &  \\
+\hline
+\end{tabular}
+
+\bigskip
+
+Konfigurace nedeterministického automatu pro řetězec \texttt{ab}:
+
+(A, ab) | (D, b) | (C, -)
+
+- řetězec \textbf{je akceptovaný} automatem
+
+\bigskip
+
+Konfigurace nedeterministického automatu pro řetězec \texttt{cccc}:
+
+(A, cccc) | (B, cccc) | (B, ccc) | (B, cc) | (B, c) | (B, -) | (C, -)
+
+- řetězec \textbf{je akceptovaný} automatem
+
+\bigskip
+
+Přechodová tabulka deterministického automatu:
+
+\bigskip
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+  & a & b & c \\ \hline
+A & B & - & C \\ \hline
+B & - & D & - \\ \hline
+C & - & - & C \\ \hline
+D & - & - & - \\
+\hline
+\end{tabular}
+
+\bigskip
+
+Výstupní stavy: \texttt{A, C, D}
+
+\bigskip
+
+Konfigurace nedeterministického automatu pro řetězec \texttt{ab}:
+
+(A, ab) | (B, b) | (D, -)
+
+- řetězec \textbf{je akceptovaný} automatem
+
+\bigskip
+
+Konfigurace nedeterministického automatu pro řetězec \texttt{cccc}:
+
+(A, cccc) | (C, ccc) | (C, cc) | (C, c) | (C, -)
+
+- řetězec \textbf{je akceptovaný} automatem
 
 \newpage
 

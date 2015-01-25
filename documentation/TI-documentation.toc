@@ -12,4 +12,6 @@
 \contentsline {subsection}{\numberline {3.4}Ulo\IeC {\v z}en\IeC {\'\i } v\IeC {\'y}sledn\IeC {\'e}ho automatu a v\IeC {\'y}pis na v\IeC {\'y}stup}{6}{subsection.3.4}
 \contentsline {section}{\numberline {4}U\IeC {\v z}ivatelsk\IeC {\'a} dokumentace}{7}{section.4}
 \contentsline {section}{\numberline {5}Ov\IeC {\v e}\IeC {\v r}en\IeC {\'\i } spr\IeC {\'a}vnosti p\IeC {\v r}evodu}{8}{section.5}
-\contentsline {section}{\numberline {6}Z\IeC {\'a}v\IeC {\v e}r}{9}{section.6}
+\contentsline {subsection}{\numberline {5.1}Automat 1}{8}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Automat 2}{9}{subsection.5.2}
+\contentsline {section}{\numberline {6}Z\IeC {\'a}v\IeC {\v e}r}{10}{section.6}
