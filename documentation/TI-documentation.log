@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.12.28)  25 JAN 2015 13:53
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.12.28)  25 JAN 2015 15:46
 entering extended mode
 **C:/Users/Vlada47/Documents/GitHub/TI_semestralka/documentation/TI-documentati
 on.tex
@@ -633,7 +633,7 @@ n.out)
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<logo_fav.jpg, id=67, 603.25375pt x 320.19624pt>
+<logo_fav.jpg, id=83, 603.25375pt x 320.19624pt>
 File: logo_fav.jpg Graphic file (type jpg)
  <use logo_fav.jpg>
 Package pdftex.def Info: logo_fav.jpg used on input line 23.
@@ -731,13 +731,13 @@ Overfull \hbox (36.33678pt too wide) in paragraph at lines 98--99
 g[][] dkaTable, LinkedList<String> statuses)\IL2/cmr/m/n/10.95 .
  []
 
-[6] <success.jpg, id=127, 698.61pt x 55.70813pt>
+[6] <success.jpg, id=147, 698.61pt x 55.70813pt>
 File: success.jpg Graphic file (type jpg)
  <use success.jpg>
 Package pdftex.def Info: success.jpg used on input line 114.
 (pdftex.def)             Requested size: 426.79134pt x 34.0329pt.
 
-<fail.jpg, id=128, 723.45282pt x 40.65187pt>
+<fail.jpg, id=148, 723.45282pt x 40.65187pt>
 File: fail.jpg Graphic file (type jpg)
  <use fail.jpg>
 Package pdftex.def Info: fail.jpg used on input line 124.
@@ -759,29 +759,29 @@ Package hyperref Warning: Composite letter `\textasciicaron+r'
 (hyperref)                not defined in PD1 encoding,
 (hyperref)                removing `\textasciicaron' on input line 132.
 
-[8] [9]
+[8] [9] [10] [11] [12] [13]
 
 Package hyperref Warning: Composite letter `\textasciicaron+e'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textasciicaron' on input line 279.
+(hyperref)                removing `\textasciicaron' on input line 588.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 283.
-[10]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 283.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 592.
+[14]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 592.
 
 (C:\Users\Vlada47\Documents\GitHub\TI_semestralka\documentation\TI-documentatio
 n.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 283.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 283.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 592.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 592.
 Package rerunfilecheck Info: File `TI-documentation.out' has not changed.
-(rerunfilecheck)             Checksum: 69065D4616D9E103EDEDCEC470310784;1196.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 283.
+(rerunfilecheck)             Checksum: D09413CD431E3668C788E2739A56215F;1436.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 592.
  ) 
 Here is how much of TeX's memory you used:
- 7826 strings out of 493921
- 106646 string characters out of 3154493
- 202657 words of memory out of 3000000
- 10960 multiletter control sequences out of 15000+200000
+ 7838 strings out of 493921
+ 106794 string characters out of 3154493
+ 203657 words of memory out of 3000000
+ 10964 multiletter control sequences out of 15000+200000
  17649 words of font info for 54 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  29i,8n,31p,1537b,404s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -794,9 +794,9 @@ aming/MiKTeX/2.9/fonts/type1/public/cs/csr6.pfb><C:/Users/Vlada47/AppData/Roami
 ng/MiKTeX/2.9/fonts/type1/public/cs/csr8.pfb><C:/Users/Vlada47/AppData/Roaming/
 MiKTeX/2.9/fonts/type1/public/cs/csr9.pfb><C:/Users/Vlada47/AppData/Roaming/MiK
 TeX/2.9/fonts/type1/public/cs/cstt10.pfb>
-Output written on TI-documentation.pdf (11 pages, 214357 bytes).
+Output written on TI-documentation.pdf (15 pages, 227159 bytes).
 PDF statistics:
- 185 PDF objects out of 1000 (max. 8388607)
- 31 named destinations out of 1000 (max. 500000)
- 144 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 225 PDF objects out of 1000 (max. 8388607)
+ 39 named destinations out of 1000 (max. 500000)
+ 176 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -197,6 +197,8 @@ Konfigurace deterministického automatu pro řetězec \texttt{aaabba}:
 
 - řetězec  \textbf{je akceptovaný} automatem
 
+\newpage
+
 \subsection{Automat 2}
 Následující automat přijímá řetězce složené z písmen \texttt{a}, \texttt{b}, \texttt{c}, přičemž mezi jeho nedeterminismy patří pouze \textbf{výskyt e-hran}. Automat vychází z regulárního výrazu \texttt{ab + c*} . 
 
@@ -260,7 +262,7 @@ Výstupní stavy: \texttt{A, C, D}
 
 \bigskip
 
-Konfigurace nedeterministického automatu pro řetězec \texttt{ab}:
+Konfigurace deterministického automatu pro řetězec \texttt{ab}:
 
 (A, ab) | (B, b) | (D, -)
 
@@ -268,7 +270,7 @@ Konfigurace nedeterministického automatu pro řetězec \texttt{ab}:
 
 \bigskip
 
-Konfigurace nedeterministického automatu pro řetězec \texttt{cccc}:
+Konfigurace deterministického automatu pro řetězec \texttt{cccc}:
 
 (A, cccc) | (C, ccc) | (C, cc) | (C, c) | (C, -)
 
@@ -276,8 +278,315 @@ Konfigurace nedeterministického automatu pro řetězec \texttt{cccc}:
 
 \newpage
 
+\subsection{Automat 3}
+Následující automat přijímá řetězce složené z písmen \texttt{a}, \texttt{b}, přičemž mezi jeho nedeterminismy patří pouze \textbf{výskyt e-hran}. Automat vychází z regulárního výrazu \texttt{a(a+b)* + (a+b)* + aa(a+b)*} .
+
+\bigskip
+
+Vstupní stavy: \texttt{A}
+
+Výstupní stavy: \texttt{D}
+
+\bigskip
+
+Přechodová tabulka nedeterministického automatu:
+
+\bigskip
+
+\begin{tabular}{| l | l | l || l |}
+\hline
+  & a & b & e \\ \hline
+A & B & - & E \\ \hline
+B & - & - & C \\ \hline
+C & C & C & D \\ \hline
+D & - & - &  \\ \hline
+E & E & E & F \\ \hline
+F & G & - &  \\ \hline
+G & H & - &  \\ \hline
+H & - & - & I \\ \hline
+I & I & I & D \\
+\hline
+\end{tabular}
+
+\bigskip
+
+Konfigurace nedeterministického automatu pro řetězec \texttt{aabbb}:
+
+(A, aabbb) | (E, aabbb) | (F, aabbb) | (G, abbb) | (H, bbb) | (I, bbb) | (I, bb) | (I, b) | (I, -) | (D, -)
+
+- řetězec \textbf{je akceptovaný} automatem
+
+\bigskip
+
+Přechodová tabulka deterministického automatu:
+
+\bigskip
+
+\begin{tabular}{| l | l | l |}
+\hline
+  & a & b \\ \hline
+A & B & C \\ \hline
+B & D & E \\ \hline
+C & F & C \\ \hline
+D & D & G \\ \hline
+E & H & E \\ \hline
+F & I & C \\ \hline
+G & J & G \\ \hline
+H & D & E \\ \hline
+I & I & K \\ \hline
+J & D & G \\ \hline
+K & L & K \\ \hline
+L & I & K \\
+\hline
+\end{tabular}
+
+\bigskip
+
+Výstupní stavy: \texttt{B, D, E, G, H, I, J, K, L}
+
+\bigskip
+
+Konfigurace deterministického automatu pro řetězec \texttt{aabbb}:
+
+(A, aabbb) | (B, abbb) | (D, bbb) | (G, bb) | (G, b) | (G, -)
+
+- řetězec \textbf{je akceptovaný} automatem
+
+\newpage
+
+\subsection{Automat 4}
+Následující automat přijímá řetězce složené z písmen \texttt{a}, \texttt{b}, přičemž mezi jeho nedeterminismy patří pouze \textbf{výskyt e-hran}. Automat vychází z regulárního výrazu \texttt{(a+b)* . (aa+bb)* . (a+b)*} .
+
+\bigskip
+
+Vstupní stavy: \texttt{A}
+
+Výstupní stavy: \texttt{B}
+
+\bigskip
+
+Přechodová tabulka nedeterministického automatu:
+
+\bigskip
+
+\begin{tabular}{| l | l | l || l |}
+\hline
+  & a & b & e \\ \hline
+A & - & - & E \\ \hline
+B & - & - &  \\ \hline
+C & G & H &  \\ \hline
+D & - & - & F \\ \hline
+E & E & E & C \\ \hline
+F & F & F & B \\ \hline
+G & D & - &  \\ \hline
+H & - & D &  \\
+\hline
+\end{tabular}
+
+\bigskip
+
+Konfigurace nedeterministického automatu pro řetězec \texttt{bbaab}:
+
+(A, bbaab) | (E, bbaab) | (E, baab) | (E, aab) | (C, aab) | (G, ab) | (D, b) | (F, b) | (F, -) | (B, -)
+
+- řetězec \textbf{je akceptovaný} automatem
+
+\bigskip
+
+Přechodová tabulka deterministického automatu:
+
+\bigskip
+
+\begin{tabular}{| l | l | l |}
+\hline
+  & a & b \\ \hline
+A & B & C \\ \hline
+B & D & C \\ \hline
+C & B & E \\ \hline
+D & D & F \\ \hline
+E & G & E \\ \hline
+F & G & E \\ \hline
+G & D & F \\
+\hline
+\end{tabular}
+
+\bigskip
+
+Výstupní stavy: \texttt{D, E, F, G}
+
+\bigskip
+
+Konfigurace deterministického automatu pro řetězec \texttt{bbaab}:
+
+(A, bbaab) | (C, baab) | (E, aab) | (G, ab) | (D, b) | (F, -)
+
+- řetězec \textbf{je akceptovaný} automatem
+
+\newpage
+
+\subsection{Automat 5}
+Následující automat přijímá řetězce složené z písmen \texttt{a}, \texttt{b}, přičemž mezi jeho nedeterminismy patří pouze \textbf{nejednoznačné přechody}. Automat vychází z gramatiky G3 v regulárním tvaru popsané následovně: 
+
+\texttt{S | abA / bS / aa}
+
+\texttt{A | B / bbA}
+
+\texttt{B | aS / bbA / a}
+
+\bigskip
+
+Vstupní stavy: \texttt{A}
+
+Výstupní stavy: \texttt{D}
+
+\bigskip
+
+Přechodová tabulka nedeterministického automatu:
+
+\bigskip
+
+\begin{tabular}{| l | l | l |}
+\hline
+  & a & b \\ \hline
+A & BC & A \\ \hline
+B & - & E \\ \hline
+C & D & - \\ \hline
+D & - & - \\ \hline
+E & AD & FH \\ \hline
+F & - & E \\ \hline
+G & AD & H \\ \hline
+H & - & E \\
+\hline
+\end{tabular}
+
+\bigskip
+
+Konfigurace nedeterministického automatu pro řetězec \texttt{abbba}:
+
+(A, abbba) | (B, bbba) | (E, bba) | (F, ba) | (E, a) | (D, -)
+
+- řetězec \textbf{je akceptovaný} automatem
+
+\bigskip
+
+Přechodová tabulka deterministického automatu:
+
+\bigskip
+
+\begin{tabular}{| l | l | l |}
+\hline
+  & a & b \\ \hline
+A & B & A \\ \hline
+B & C & D \\ \hline
+C & - & - \\ \hline
+D & E & F \\ \hline
+E & B & A \\ \hline
+F & G & F \\ \hline
+G & H & I \\ \hline
+H & H & I \\ \hline
+I & H & I \\
+\hline
+\end{tabular}
+
+\bigskip
+
+Výstupní stavy: \texttt{C, E, G, H}
+
+\bigskip
+
+Konfigurace deterministického automatu pro řetězec \texttt{abbba}:
+
+(A, abbba) | (B, bbba) | (D, bba) | (F, ba) | (F, a) | (G, -)
+
+- řetězec \textbf{je akceptovaný} automatem
+
+\newpage
+
+\subsection{Automat 6}
+Následující automat přijímá řetězce složené z písmen \texttt{a}, \texttt{b}, přičemž mezi jeho nedeterminismy patří pouze \textbf{nejednoznačné přechody}. Automat přijímá řetězce obsahující podřetězce \texttt{-abb-} nebo \texttt{-ba-}.
+
+\bigskip
+
+Vstupní stavy: \texttt{A}
+
+Výstupní stavy: \texttt{D}
+
+\bigskip
+
+Přechodová tabulka nedeterministického automatu:
+
+\bigskip
+
+\begin{tabular}{| l | l | l |}
+\hline
+  & a & b \\ \hline
+A & AB & AE \\ \hline
+B & - & C \\ \hline
+C & - & D \\ \hline
+D & D & D \\ \hline
+E & D & - \\
+\hline
+\end{tabular}
+
+\bigskip
+
+Konfigurace nedeterministického automatu pro řetězec \texttt{babbb}:
+
+(A, babbb) | (A, abbb) | (B, bbb) | (C, bb) | (D, b) | (D, -)
+
+- řetězec \textbf{je akceptovaný} automatem
+
+\bigskip
+
+Konfigurace nedeterministického automatu pro řetězec \texttt{abaa}:
+
+(A, abaa) | (A, baa) | (E, aa) | (D, a) | (D, -)
+
+- řetězec \textbf{je akceptovaný} automatem
+
+\bigskip
+
+Přechodová tabulka deterministického automatu:
+
+\bigskip
+
+\begin{tabular}{| l | l | l |}
+\hline
+  & a & b \\ \hline
+A & B & C \\ \hline
+B & B & D \\ \hline
+C & E & C \\ \hline
+D & E & F \\ \hline
+E & E & G \\ \hline
+F & E & F \\ \hline
+G & E & F \\
+\hline
+\end{tabular}
+
+\bigskip
+
+Výstupní stavy: \texttt{E, F, G}
+
+\bigskip
+
+Konfigurace deterministického automatu pro řetězec \texttt{babbb}:
+
+(A, babbb) | (C, abbb) | (E, bbb) | (G, bb) | (F, b) | (F, -)
+
+- řetězec \textbf{je akceptovaný} automatem
+
+\bigskip
+
+Konfigurace deterministického automatu pro řetězec \texttt{abaa}:
+
+(A, abaa) | (B, baa) | (D, aa) | (E, a) | (E, -)
+
+- řetězec \textbf{je akceptovaný} automatem
+
+\newpage
+
 \section{Závěr}
 
--doplnit-
+Na základě testovaných automatů se nám podařilo zrealizovat program, který dokáže převádět nedeterministické konečné rozpoznávací automaty na deterministické. Algoritmus převodu by se dal samozřejmě vylepšit o jistou formu minimalizace, kdy by se odstraňovaly přebytečné stavy z výsledného automatu (lze si všimnout, že u testovacích automatů nám občas vzniklo několik stavů se stejnými vlastnostmi), nicméně to již nebylo předmětem zadání a navíc výstup programu v podobě pevně daného formátu souboru umožňuje předat výsledek programu, který se zabývá přímo minimalizací. Celkově vzato byl cíl práce splněn.
 
 \end{document}
